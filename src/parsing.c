@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:06:46 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/22 23:34:25 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/23 19:58:05 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,17 @@ int			get_modif(const char **str)
 		}
 		return (l);
 	}
-	if (*(*str + 1) == 'j')
+	if (**str == 'j')
 		return (j);
-	if (*(*str + 1) == 'z')
-		return (j);
+	if (**str == 'z')
+		return (z);
 	return (none);
 }
 
 const char	*get_info(const char *str, t_modif *modif)
 {
-	while (*str && !ft_isalnum(*str) && *str != '.' && *str != '*')
+	while (*str && *str == '#' && *str == '0' &&
+			*str == '-' && *str == '+' && *str == ' ')
 		modif->attributes += get_attributes(*str++);
 	modif->champ = get_champ(&str);
 	if (*str == '.')

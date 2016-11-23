@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:10 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/22 23:34:26 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/23 18:41:22 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,33 @@ int			ft_printf(const char *format, ...)
 	va_list		ap;
 	t_modif		*modif;
 	int			nb_wrote;
+	char		*ret_str;
 
 	if (!format)
 		return (-1);
+	ret_str = NULL;
 	nb_wrote = 0;
 	va_start(ap, format);
 	if (!(modif = (t_modif *)malloc(sizeof(t_modif))))
 		exit (-1);
 	while (*format)
 	{
-		nb_wrote += disp_until_mod(&format);
+		nb_wrote += copy_until_mod(&format, &ret_str, nb_wrote);
 		if (*format)
 		{
 			init_modif(&modif);
 			format = get_info(format, modif);
 			disp_info(modif);
+			put_arg(modif, &ret_str, &nb_wrote, ap);
 		}
 	}
 	free(modif);
 	va_end(ap);
+	//write(1, ret_str, nb_wrote);
+	//for verification
+	int i = 0;
+	while (ret_str[i])
+		write(1, &ret_str[i++], 1);
+	free(ret_str);
 	return (nb_wrote);
 }
