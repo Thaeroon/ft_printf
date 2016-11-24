@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/23 19:16:48 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/24 14:33:53 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,18 @@ char	*conv_i(t_modif *modif, va_list arg)
 {
 	intmax_t	nb;
 	char		*nb_str;
+	char		*prefix;
 
 	nb = get_signed_dec(modif, arg);
+	if (nb >= 0)
+	{
+		if (modif->attributes & 0x8)
+			prefix = ft_strdup("+");
+		else if (modif->attributes & 0x10)
+			prefix = ft_strdup(" ");
+	}
 	nb_str = ft_itoa_base(nb, 10, 0);
+	nb_str = ft_strfjoin(&prefix, &nb_str, 3);
 	return (nb_str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/03 15:14:44 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/09 13:37:54 by nmuller          ###   ########.fr       */
+/*   Updated: 2016/11/24 14:23:26 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
+char			*ft_strfjoin(char **s1, char **s2, int to_free);
 int				ft_atoi(const char *nptr);
 void			ft_bzero(void *s, size_t n);
 int				ft_isalnum(int c);

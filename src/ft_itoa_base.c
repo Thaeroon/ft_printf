@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:05:41 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/23 19:14:08 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/24 14:32:15 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@ char		*ft_itoa_base(intmax_t nb, int base, int mod)
 	char	*str;
     int		isneg;
 	int		len;
+
+    if (nb == 0)
+        return (ft_strdup("0"));
 	len = ft_intlen(nb, base);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		exit (-3);
 	isneg = 0;
-    if (nb == 0)
-        return (ft_strdup("0"));
     if (nb < 0 && base == 10)
     {
         isneg = 1;
