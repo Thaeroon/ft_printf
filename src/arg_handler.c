@@ -6,18 +6,18 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/24 21:33:23 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 04:58:51 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_fun(char *(*tf[123])(t_modif *, va_list))
+void	init_fun(char *(*tf[256])(t_modif *, va_list))
 {
 	int		i;
 
 	i = 0;
-	while (i < 123)
+	while (i < 256)
 		tf[i++] = 0;
 	tf['s'] = &conv_s;
 	tf['S'] = &conv_S;
@@ -38,7 +38,7 @@ void	init_fun(char *(*tf[123])(t_modif *, va_list))
 
 char	*get_fun(t_modif *info, va_list ap)
 {
-	char	*(*tf[123])(t_modif *, va_list);
+	char	*(*tf[256])(t_modif *, va_list);
 
 	init_fun(tf);
 	if (tf[(int)info->conv] == 0)
@@ -59,9 +59,10 @@ void	put_arg(t_modif *modif, char **ret_str, int	*ret_len, va_list ap)
 	{
 		if ((schamp = modif->champ - ft_strlen(arg)) > 0)
 		{
-			if (modif->attributes & 0x2 && modif->precision < 0)
+			if (modif->attributes & 0x2 && modif->precision < 0
+					&& modif->conv != '%')
 				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), '0');
-			else
+			else if (modif->conv != '%')
 				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), ' ');
 		}
 		*ret_len += copy_arg(ret_str, *ret_len, arg, ft_strlen(arg));

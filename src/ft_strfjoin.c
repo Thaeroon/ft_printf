@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strfjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:14:44 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 03:40:20 by nicolas          ###   ########.fr       */
+/*   Created: 2016/11/24 14:11:05 by nicolas           #+#    #+#             */
+/*   Updated: 2016/11/24 14:25:26 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
+/*
+**	to_free = 00	|| 01	|| 10	|| 11
+** 			  none	  *s1	  *s2	  both
+*/
 
-char			*ft_strfjoin(char **s1, char **s2, int to_free);
-char			*ft_strdup(const char *src);
-char			*ft_strjoin(char const *s1, char const *s2);
-size_t			ft_strlen(const char *s);
+char	*ft_strfjoin(char **s1, char **s2, int to_free)
+{
+	char	*ret;
 
-#endif
+	if (!s1 || !s2)
+		return (NULL);
+	ret = ft_strjoin(*s1, *s2);
+	if (to_free & 0x1)
+		free(*s1);
+	if (to_free & 0x2)
+		free(*s2);
+	return (ret);
+}

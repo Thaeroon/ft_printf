@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 01:36:01 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 04:48:31 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*conv_o(t_modif *modif, va_list arg)
 	char		*nb_str;
 	char		*prefix;
 
+	if (modif->precision == 0)
+		return (ft_strdup(""));
 	nb = get_unsigned_dec(modif, arg);
 	nb_str = ft_itoa_base_spec(nb, 8, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
@@ -88,9 +90,14 @@ char	*conv_x(t_modif *modif, va_list arg)
 char	*conv_c(t_modif *modif, va_list arg)
 {
 	char	ch;
+	char	*ret;
 
 	if (modif->modif == l)
 		return (conv_C(modif, arg));
 	ch = (unsigned char)va_arg(arg, int);
-	return (strdup(&ch));
+	if (!(ret = (char*)malloc(sizeof(char) * 2)))
+		return (0);
+	ret[0] = ch;
+	ret[2] = '\0';
+	return (ret);
 }

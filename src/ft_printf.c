@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:10 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/23 18:41:22 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 04:48:35 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,20 @@ int			ft_printf(const char *format, ...)
 		{
 			init_modif(&modif);
 			format = get_info(format, modif);
-			disp_info(modif);
+			//disp_info(modif);
 			put_arg(modif, &ret_str, &nb_wrote, ap);
 		}
 	}
 	free(modif);
 	va_end(ap);
-	//write(1, ret_str, nb_wrote);
-	//for verification
-	int i = 0;
-	while (ret_str[i])
-		write(1, &ret_str[i++], 1);
-	free(ret_str);
+	if (ret_str)
+	{
+		//write(1, ret_str, nb_wrote);
+		//for verification
+		int i = 0;
+		while (ret_str[i])
+			write(1, &ret_str[i++], 1);
+		free(ret_str);
+	}
 	return (nb_wrote);
 }

@@ -1,23 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/03 15:14:44 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 03:40:20 by nicolas          ###   ########.fr       */
+/*   Created: 2016/11/03 17:19:41 by nicolas           #+#    #+#             */
+/*   Updated: 2016/11/09 13:27:45 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#include "libft.h"
 
-# include <stdlib.h>
+char	*ft_strdup(const char *src)
+{
+	char	*ret;
+	int		src_len;
+	int		cpt;
 
-char			*ft_strfjoin(char **s1, char **s2, int to_free);
-char			*ft_strdup(const char *src);
-char			*ft_strjoin(char const *s1, char const *s2);
-size_t			ft_strlen(const char *s);
-
-#endif
+	src_len = 0;
+	while (src[src_len])
+		++src_len;
+	if (!(ret = (char*)malloc(sizeof(char) * (src_len + 1))))
+		return (0);
+	cpt = 0;
+	while (src[cpt] != '\0')
+	{
+		ret[cpt] = src[cpt];
+		cpt++;
+	}
+	ret[cpt] = src[cpt];
+	return (ret);
+}

@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 14:51:08 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 01:19:34 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 04:15:18 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ char	*conv_s(t_modif *modif, va_list arg)
 	if (modif->modif == l)
 		return (conv_S(modif, arg));
 	str = (char*)va_arg(arg, char*);
+	if (!str)
+		return (ft_strdup("(null)"));
 	if (modif->precision == -2)
 		str_len = ft_strlen(str);
 	else
@@ -50,8 +52,8 @@ static int		get_size(wchar_t *str, int precision)
 		while (++cpt < precision)
 			str_len += wchar_tochar(tmp, str[cpt]);
 	else
-		while (str[++cpt])
-			str_len += wchar_tochar(tmp, str[cpt]);
+		while (str[++cpt]){
+			str_len += wchar_tochar(tmp, str[cpt]);}
 	return (str_len);
 }
 
@@ -64,6 +66,8 @@ char	*conv_S(t_modif *modif, va_list arg)
 	int		cpt_ret;
 
 	str = (wchar_t*)va_arg(arg, wchar_t*);
+	if (!str)
+		return (ft_strdup("(null)"));
 	str_len = get_size(str, modif->precision);
 	if (!(ret = (char*)malloc(sizeof(char) * (str_len + 1))))
 		return (0);
@@ -83,7 +87,7 @@ char	*conv_C(t_modif *modif, va_list arg)
 	(void)modif;
 	nb = (wchar_t)va_arg(arg, wint_t);
 	tmp[wchar_tochar(tmp, nb)] = '\0';
-	nb_str = strdup(tmp);
+	nb_str = ft_strdup(tmp);
 	return (nb_str);
 }
 
