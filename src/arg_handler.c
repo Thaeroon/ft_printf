@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/23 19:59:52 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/24 21:33:23 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_fun(char *(*tf[123])(t_modif *, va_list))
 	while (i < 123)
 		tf[i++] = 0;
 	tf['s'] = &conv_s;
-	tf['S'] = &conv_s;
+	tf['S'] = &conv_S;
 	tf['p'] = &conv_p;
 	tf['d'] = &conv_i;
 	tf['D'] = &conv_i;
@@ -32,7 +32,7 @@ void	init_fun(char *(*tf[123])(t_modif *, va_list))
 	tf['x'] = &conv_x;
 	tf['X'] = &conv_x;
 	tf['c'] = &conv_c;
-	tf['C'] = &conv_c;
+	tf['C'] = &conv_C;
 	tf['%'] = &conv_mod;
 }
 
@@ -49,8 +49,22 @@ char	*get_fun(t_modif *info, va_list ap)
 void	put_arg(t_modif *modif, char **ret_str, int	*ret_len, va_list ap)
 {
 	char	*arg;
+	int		schamp;
 
+	if (modif->champ == -1)
+		modif->champ = va_arg(ap, int);
+	if (modif->precision == -1)
+		modif->precision = va_arg(ap, int);
 	if ((arg = get_fun(modif, ap)))
+	{
+		if ((schamp = modif->champ - ft_strlen(arg)) > 0)
+		{
+			if (modif->attributes & 0x2 && modif->precision < 0)
+				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), '0');
+			else
+				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), ' ');
+		}
 		*ret_len += copy_arg(ret_str, *ret_len, arg, ft_strlen(arg));
+	}
 	free(arg);
 }

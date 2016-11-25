@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/24 14:33:53 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 00:49:08 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,19 @@ char	*conv_i(t_modif *modif, va_list arg)
 	char		*nb_str;
 	char		*prefix;
 
+	prefix = NULL;
 	nb = get_signed_dec(modif, arg);
+	nb_str = ft_itoa_base(nb, 10, 0);
+	nb_str = apply_dec_prec(modif, &nb_str);
 	if (nb >= 0)
 	{
 		if (modif->attributes & 0x8)
 			prefix = ft_strdup("+");
 		else if (modif->attributes & 0x10)
 			prefix = ft_strdup(" ");
+		if (prefix)
+			nb_str = ft_strfjoin(&prefix, &nb_str, 3);
 	}
-	nb_str = ft_itoa_base(nb, 10, 0);
-	nb_str = ft_strfjoin(&prefix, &nb_str, 3);
 	return (nb_str);
 }
 
@@ -35,9 +38,16 @@ char	*conv_o(t_modif *modif, va_list arg)
 {
 	intmax_t	nb;
 	char		*nb_str;
+	char		*prefix;
 
 	nb = get_unsigned_dec(modif, arg);
 	nb_str = ft_itoa_base(nb, 8, 0);
+	nb_str = apply_dec_prec(modif, &nb_str);
+	if (modif->attributes & 0x1 && *nb_str != '0')
+	{
+		prefix = ft_strdup("0");
+		nb_str = ft_strfjoin(&prefix, &nb_str, 3);
+	}
 	return (nb_str);
 }
 
@@ -48,6 +58,7 @@ char	*conv_u(t_modif *modif, va_list arg)
 
 	nb = get_unsigned_dec(modif, arg);
 	nb_str = ft_itoa_base(nb, 10, 0);
+	nb_str = apply_dec_prec(modif, &nb_str);
 	return (nb_str);
 }
 
@@ -55,11 +66,31 @@ char	*conv_x(t_modif *modif, va_list arg)
 {
 	intmax_t	nb;
 	char		*nb_str;
+	char		*prefix;
 
 	nb = get_unsigned_dec(modif, arg);
 	if (modif->conv == 'x')
 		nb_str = ft_itoa_base(nb, 16, 'a');
 	else
 		nb_str = ft_itoa_base(nb, 16, 'A');
+	nb_str = apply_dec_prec(modif, &nb_str);
+	if (modif->attributes & 0x1)
+	{
+		if (modif->conv == 'x')
+			prefix = ft_strdup("0x");
+		else
+			prefix = ft_strdup("0X");
+		nb_str = ft_strfjoin(&prefix, &nb_str, 3);
+	}
 	return (nb_str);
+}
+
+char	*conv_c(t_modif *modif, va_list arg)
+{
+	char	ch;
+
+	if (modif->modif == l)
+		return (conv_C(modif, arg));
+	ch = (unsigned char)va_arg(arg, int);
+	return (strdup(&ch));
 }

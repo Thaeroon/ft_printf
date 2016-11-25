@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/23 20:00:55 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/24 22:41:59 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include <stdarg.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <stdint.h>
+# include <wchar.h>
 
 # include "libft.h"
+
+# include <stdio.h>
 
 enum
 {
@@ -42,6 +44,9 @@ typedef struct	s_modif
 	char	conv;
 }				t_modif;
 
+int			wchar_tochar(char *dest, wchar_t ch);
+char		*apply_champ(char **arg, int size, int isneg, char type);
+char		*apply_dec_prec(t_modif *modif, char **nb_str);
 char		*ft_itoa_base(intmax_t nb, int base, int mod);
 intmax_t	get_signed_dec(t_modif *modif, va_list ap);
 uintmax_t	get_unsigned_dec(t_modif *modif, va_list ap);
@@ -57,6 +62,8 @@ char		*conv_o(t_modif *modif, va_list arg);
 char		*conv_u(t_modif *modif, va_list arg);
 char		*conv_x(t_modif *modif, va_list arg);
 char		*conv_c(t_modif *modif, va_list arg);
+char		*conv_C(t_modif *modif, va_list arg);
+char		*conv_S(t_modif *modif, va_list arg);
 char		*conv_mod(t_modif *modif, va_list arg);
 
 void		disp_info(t_modif *);
