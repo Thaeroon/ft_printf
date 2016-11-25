@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 00:49:08 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 01:36:01 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*conv_i(t_modif *modif, va_list arg)
 
 	prefix = NULL;
 	nb = get_signed_dec(modif, arg);
-	nb_str = ft_itoa_base(nb, 10, 0);
+	nb_str = ft_itoa_base_spec(nb, 10, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (nb >= 0)
 	{
@@ -41,7 +41,7 @@ char	*conv_o(t_modif *modif, va_list arg)
 	char		*prefix;
 
 	nb = get_unsigned_dec(modif, arg);
-	nb_str = ft_itoa_base(nb, 8, 0);
+	nb_str = ft_itoa_base_spec(nb, 8, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (modif->attributes & 0x1 && *nb_str != '0')
 	{
@@ -57,7 +57,7 @@ char	*conv_u(t_modif *modif, va_list arg)
 	char		*nb_str;
 
 	nb = get_unsigned_dec(modif, arg);
-	nb_str = ft_itoa_base(nb, 10, 0);
+	nb_str = ft_itoa_base_spec(nb, 10, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	return (nb_str);
 }
@@ -70,9 +70,9 @@ char	*conv_x(t_modif *modif, va_list arg)
 
 	nb = get_unsigned_dec(modif, arg);
 	if (modif->conv == 'x')
-		nb_str = ft_itoa_base(nb, 16, 'a');
+		nb_str = ft_itoa_base_spec(nb, 16, 'a');
 	else
-		nb_str = ft_itoa_base(nb, 16, 'A');
+		nb_str = ft_itoa_base_spec(nb, 16, 'A');
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (modif->attributes & 0x1)
 	{

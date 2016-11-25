@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa_base_spec.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:05:41 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/24 14:32:15 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/25 01:35:05 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	ft_appendnb(char *str, intmax_t nb, int base, int mod)
 	}
 }
 
-char		*ft_itoa_base(intmax_t nb, int base, int mod)
+char		*ft_itoa_base_spec(intmax_t nb, int base, int mod)
 {
 	char	*str;
     int		isneg;
