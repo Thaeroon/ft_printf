@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/24 22:42:22 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/29 19:34:43 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char		*apply_dec_prec(t_modif *modif, char **nb_str)
 	int		i;
 	int		zero;
 
+	if (**nb_str == '0' && modif->precision == 0)
+		return (ft_strdup(""));
 	i = 0;
 	len = ft_strlen(*nb_str);
 	zero = modif->precision - len;
@@ -76,7 +78,8 @@ char		*apply_dec_prec(t_modif *modif, char **nb_str)
 	return (ft_strfjoin(&tmp, nb_str, 3));
 }
 
-char		*apply_champ(char **arg, int size, int isneg, char type)
+char		*ap_champ(char **arg, int size, int isneg, char type,
+						int *arg_len)
 {
 	char	*tmp;
 	int		i;
@@ -89,6 +92,7 @@ char		*apply_champ(char **arg, int size, int isneg, char type)
 	while (size--)
 		tmp[i++] = type;
 	tmp[i] = '\0';
+	*arg_len += i;
 	if (isneg)
 		return (ft_strfjoin(arg, &tmp, 3));
 	else

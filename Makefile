@@ -6,7 +6,7 @@
 #    By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:48:28 by nmuller           #+#    #+#              #
-#    Updated: 2016/11/25 03:36:45 by nicolas          ###   ########.fr        #
+#    Updated: 2016/11/29 19:43:36 by nicolas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,7 @@ SRC = $(addprefix $(SRC_PATH)/,$(SRC_FILES))
 OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_FILES))
 
 # rules
-.PHONY: clean, fclean, re, norme
+.PHONY: clean fclean re norme
 all: $(NAME)
 
 $(NAME): $(OBJ)

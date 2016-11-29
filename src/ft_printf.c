@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:10 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 04:48:35 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/29 19:34:09 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		init_modif(t_modif **modif)
 {
-	(*modif)->attributes = 0;
+	(*modif)->att = 0;
 	(*modif)->champ = -2;
 	(*modif)->precision = -2;
 	(*modif)->modif = 0;
@@ -50,12 +50,12 @@ int			ft_printf(const char *format, ...)
 	va_end(ap);
 	if (ret_str)
 	{
-		//write(1, ret_str, nb_wrote);
+		write(1, ret_str, nb_wrote);
 		//for verification
-		int i = 0;
+		/*int i = 0;
 		while (ret_str[i])
 			write(1, &ret_str[i++], 1);
-		free(ret_str);
+		free(ret_str);*/
 	}
 	return (nb_wrote);
 }

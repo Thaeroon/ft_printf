@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:06:46 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 01:21:06 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/29 19:37:48 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ const char	*get_info(const char *str, t_modif *modif)
 {
 	while (*str && (*str == '#' || *str == '0' ||
 			*str == '-' || *str == '+' || *str == ' '))
-		modif->attributes |= get_attributes(*str++);
+		modif->att |= get_attributes(*str++);
 	modif->champ = get_champ(&str);
 	if (*str == '.')
 	{

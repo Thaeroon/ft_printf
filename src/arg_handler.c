@@ -6,13 +6,13 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/25 04:58:51 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/11/29 20:56:42 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	init_fun(char *(*tf[256])(t_modif *, va_list))
+void	init_fun(char *(*tf[256])(t_modif *, va_list, int*))
 {
 	int		i;
 
@@ -36,36 +36,38 @@ void	init_fun(char *(*tf[256])(t_modif *, va_list))
 	tf['%'] = &conv_mod;
 }
 
-char	*get_fun(t_modif *info, va_list ap)
+char	*get_fun(t_modif *info, va_list ap, int *arg_len)
 {
-	char	*(*tf[256])(t_modif *, va_list);
+	char	*(*tf[256])(t_modif *, va_list, int*);
 
 	init_fun(tf);
 	if (tf[(int)info->conv] == 0)
 		return (NULL);
-	return (tf[(int)info->conv](info, ap));
+	return (tf[(int)info->conv](info, ap, arg_len));
 }
 
 void	put_arg(t_modif *modif, char **ret_str, int	*ret_len, va_list ap)
 {
 	char	*arg;
 	int		schamp;
+	int		arg_len;
 
+	arg_len = 0;
 	if (modif->champ == -1)
 		modif->champ = va_arg(ap, int);
 	if (modif->precision == -1)
 		modif->precision = va_arg(ap, int);
-	if ((arg = get_fun(modif, ap)))
+	if ((arg = get_fun(modif, ap, &arg_len)))
 	{
-		if ((schamp = modif->champ - ft_strlen(arg)) > 0)
+		if ((schamp = modif->champ - arg_len) > 0)
 		{
-			if (modif->attributes & 0x2 && modif->precision < 0
+			if (modif->att & 0x2 && modif->precision < 0
 					&& modif->conv != '%')
-				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), '0');
+				arg = ap_champ(&arg, schamp, (modif->att & 0x4), '0', &arg_len);
 			else if (modif->conv != '%')
-				arg = apply_champ(&arg, schamp, (modif->attributes & 0x4), ' ');
+				arg = ap_champ(&arg, schamp, (modif->att & 0x4), ' ', &arg_len);
 		}
-		*ret_len += copy_arg(ret_str, *ret_len, arg, ft_strlen(arg));
+		*ret_len += copy_arg(ret_str, *ret_len, arg, arg_len);
 	}
 	free(arg);
 }
