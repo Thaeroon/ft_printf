@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/29 19:34:43 by nicolas          ###   ########.fr       */
+/*   Updated: 2016/12/01 15:58:04 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ char		*apply_dec_prec(t_modif *modif, char **nb_str)
 	return (ft_strfjoin(&tmp, nb_str, 3));
 }
 
-char		*ap_champ(char **arg, int size, int isneg, char type,
-						int *arg_len)
+char		*ap_champ(char **arg, int size, t_modif *modif,
+						char type, int *arg_len)
 {
 	char	*tmp;
 	int		i;
@@ -87,16 +87,24 @@ char		*ap_champ(char **arg, int size, int isneg, char type,
 	i = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (size + 1))))
 		exit (-3);
-	if (isneg)
-		type = ' ';
 	while (size--)
 		tmp[i++] = type;
 	tmp[i] = '\0';
 	*arg_len += i;
-	if (isneg)
+	if (modif->att & 0x4)
 		return (ft_strfjoin(arg, &tmp, 3));
-	else
-		return (ft_strfjoin(&tmp, arg, 3));
+	if (modif->att & 0x2 && (modif->conv == 'i' || modif->conv == 'x'
+			|| modif->conv == 'd' || modif->conv == 'D' || modif->conv == 'X'))
+	{
+		i = 0;
+		while (((*arg)[i] < '0' || (*arg)[i] > '9')
+				|| (*arg)[i + 1] == 'x' || (*arg)[i + 1] == 'X')
+		{
+			tmp[i] = (*arg)[i];
+			(*arg)[i++] = '0';
+		}
+	}
+	return (ft_strfjoin(&tmp, arg, 3));
 }
 
 int			wchar_tochar(char *dest, wchar_t ch)

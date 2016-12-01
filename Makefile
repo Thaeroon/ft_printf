@@ -6,7 +6,7 @@
 #    By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:48:28 by nmuller           #+#    #+#              #
-#    Updated: 2016/11/29 19:43:36 by nicolas          ###   ########.fr        #
+#    Updated: 2016/12/01 15:43:08 by nicolas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRC_FILES =	arg_handler.c \
 			ft_strdup.c \
 			ft_strjoin.c \
 			ft_strfjoin.c \
-			ft_strlen.c
+			ft_strlen.c \
+			ft_strcpy.c 
 
 # executable name
 NAME = libftprintf.a
