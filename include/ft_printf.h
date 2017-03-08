@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 15:40:38 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 16:59:15 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char			*conv_big_s(t_modif *modif, va_list arg, int *arg_len);
 char			*conv_mod(t_modif *modif, va_list arg, int *arg_len);
 
 void			disp_info(t_modif *modif);
+void			affichebin(uintmax_t n);
 
 #endif

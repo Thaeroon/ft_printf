@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 13:05:19 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 14:13:55 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 16:31:06 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		copy_arg(char **ret, int ret_len, char *arg, int arg_len)
 void	disp_info(t_modif *modif)
 {
 	printf("\n");
-	printf("att :%d\n", modif->att);
+	printf("att        :%d\n", modif->att);
 	printf("champ      :%d\n", modif->champ);
 	printf("precision  :%d\n", modif->precision);
 	printf("modif      :%d\n", modif->modif);

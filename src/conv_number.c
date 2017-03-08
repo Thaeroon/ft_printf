@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 14:33:04 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 16:59:43 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ char	*conv_u(t_modif *modif, va_list arg, int *arg_len)
 	char		*nb_str;
 
 	nb = get_unsigned_dec(modif, arg);
+	printf("%jd\n", nb);
+	affichebin(nb);
 	nb_str = ft_itoa_base_spec(nb, 10, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	*arg_len = ft_strlen(nb_str);

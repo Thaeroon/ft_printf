@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:05:41 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 14:28:20 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 16:57:19 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,4 @@ char		*ft_itoa_base_spec(intmax_t nb, int base, int mod)
 	str[len] = '\0';
 	ft_reverse(str, len);
 	return (str);
-}
-
-void		affichebin(uintmax_t n)
-{
-	uintmax_t bit = 0;
-	uintmax_t mask = 1;
-	
-	for (int i = 0; i < 64; ++i)
-	{
-		bit = (n & mask) >> i;
-		printf("%jd", bit);
-		mask <<= 1;
-	}
 }

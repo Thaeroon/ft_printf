@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 14:14:27 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 16:20:13 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	put_arg(t_modif *modif, char **ret_str, int *ret_len, va_list ap)
 			if (modif->att & 0x2 && modif->precision < 0
 					&& modif->conv != '%' && !(modif->att & 0x4))
 				arg = ap_champ(&arg, schamp, modif, '0', &arg_len);
-			else if (modif->conv != '%')
+			else 
 				arg = ap_champ(&arg, schamp, modif, ' ', &arg_len);
 		}
 		*ret_len += copy_arg(ret_str, *ret_len, arg, arg_len);

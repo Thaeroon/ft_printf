@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 15:40:36 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/08 17:03:49 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,19 @@ uintmax_t	get_unsigned_dec(t_modif *modif, va_list ap)
 	else if (modif->modif == h)
 		nb = (unsigned short int)nb;
 	else if (modif->modif == l)
-		nb = (unsigned long)nb;
-	else if (modif->modif == ll)
-		nb = (unsigned long long)nb;
+		nb = (unsigned long int)nb;
+	else if (modif->modif == ll){
+		printf("%jd\n", nb);
+		affichebin(nb);
+		nb = (unsigned long long int)nb;
+	}
 	else if (modif->modif == z)
 		nb = (size_t)nb;
-	else if (modif->modif == none)
+	else if (modif->modif == none){
+		printf("%jd\n", nb);
+		affichebin(nb);
 		nb = (unsigned int)nb;
+	}
 	return (nb);
 }
 
@@ -138,4 +144,22 @@ int			wchar_tochar(char *dest, wchar_t ch)
 		return (4);
 	}
 	return (0);
+}
+
+/*
+** a suppr
+*/
+
+void		affichebin(uintmax_t n)
+{
+	uintmax_t bit = 0;
+	uintmax_t mask = 1;
+
+	for (int i = 0; i < 128; ++i)
+	{
+		bit = (n & mask) >> i;
+		printf("%jd", bit);
+		mask <<= 1;
+	}
+	printf("\n");
 }
