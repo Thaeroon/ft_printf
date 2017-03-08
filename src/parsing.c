@@ -6,25 +6,24 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 23:06:46 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/29 19:37:48 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 14:33:57 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 int			get_attributes(char c)
 {
 	if (c == '#')
 		return (1);
 	if (c == '0')
-		return (1<<1);
+		return (1 << 1);
 	if (c == '-')
-		return (1<<2);
+		return (1 << 2);
 	if (c == '+')
-		return (1<<3);
+		return (1 << 3);
 	if (c == ' ')
-		return (1<<4);
+		return (1 << 4);
 	return (0);
 }
 

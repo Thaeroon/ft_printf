@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 13:05:19 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/29 19:34:06 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 14:13:55 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		copy_until_mod(const char **str, char **ret, int ret_len)
 	while ((*str)[str_len] != '%' && (*str)[str_len])
 		++str_len;
 	if (!(tmp = (char *)malloc(sizeof(char) * (str_len + ret_len + 1))))
-		exit (-2);
+		exit(-2);
 	index = 0;
 	while (index < ret_len)
 		tmp[index++] = *(*ret)++;
@@ -43,7 +43,7 @@ int		copy_arg(char **ret, int ret_len, char *arg, int arg_len)
 	int		index;
 
 	if (!(tmp = (char *)malloc(sizeof(char) * (ret_len + arg_len + 1))))
-		exit (-2);
+		exit(-2);
 	index = 0;
 	while (index < ret_len)
 		tmp[index++] = *(*ret)++;
@@ -56,7 +56,10 @@ int		copy_arg(char **ret, int ret_len, char *arg, int arg_len)
 	return (arg_len);
 }
 
-//a suppr
+/*
+** a suppr
+*/
+
 void	disp_info(t_modif *modif)
 {
 	printf("\n");

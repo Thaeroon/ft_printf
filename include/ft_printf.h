@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2016/12/01 15:43:04 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 13:23:49 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,31 +44,32 @@ typedef struct	s_modif
 	char	conv;
 }				t_modif;
 
-int			wchar_tochar(char *dest, wchar_t ch);
-char		*ap_champ(char **arg, int size, t_modif *modif, char type,
+int				wchar_tochar(char *dest, wchar_t ch);
+char			*ap_champ(char **arg, int size, t_modif *modif, char type,
 						int *arg_len);
-char		*apply_dec_prec(t_modif *modif, char **nb_str);
-char		*ft_itoa_base_spec(intmax_t nb, int base, int mod);
-intmax_t	get_signed_dec(t_modif *modif, va_list ap);
-uintmax_t	get_unsigned_dec(t_modif *modif, va_list ap);
-int			copy_arg(char **ret, int ret_len, char *arg, int arg_len);
-void		put_arg(t_modif *modif, char **ret_str, int	*ret_len, va_list ap);
-const char	*get_info(const char *str, t_modif *modif);
-int			ft_printf(const char *format, ...);
-int			copy_until_mod(const char **str, char **ret, int ret_len);
-char		*ft_strcpy(char *dest, const char *src);
+char			*apply_dec_prec(t_modif *modif, char **nb_str);
+char			*ft_itoa_base_spec(intmax_t nb, int base, int mod);
+intmax_t		get_signed_dec(t_modif *modif, va_list ap);
+uintmax_t		get_unsigned_dec(t_modif *modif, va_list ap);
+int				copy_arg(char **ret, int ret_len, char *arg, int arg_len);
+void			put_arg(t_modif *modif, char **ret_str,
+						int	*ret_len, va_list ap);
+const char		*get_info(const char *str, t_modif *modif);
+int				ft_printf(const char *format, ...);
+int				copy_until_mod(const char **str, char **ret, int ret_len);
+char			*ft_strcpy(char *dest, const char *src);
 
-char		*conv_s(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_p(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_i(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_o(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_u(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_x(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_c(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_C(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_S(t_modif *modif, va_list arg, int *arg_len);
-char		*conv_mod(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_s(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_p(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_i(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_o(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_u(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_x(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_c(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_big_c(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_big_s(t_modif *modif, va_list arg, int *arg_len);
+char			*conv_mod(t_modif *modif, va_list arg, int *arg_len);
 
-void		disp_info(t_modif *);
+void			disp_info(t_modif *modif);
 
 #endif

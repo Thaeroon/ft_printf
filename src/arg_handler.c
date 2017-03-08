@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2016/12/01 15:16:01 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 14:14:27 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	init_fun(char *(*tf[256])(t_modif *, va_list, int*))
 	while (i < 256)
 		tf[i++] = 0;
 	tf['s'] = &conv_s;
-	tf['S'] = &conv_S;
+	tf['S'] = &conv_big_s;
 	tf['p'] = &conv_p;
 	tf['d'] = &conv_i;
 	tf['D'] = &conv_i;
@@ -32,7 +32,7 @@ void	init_fun(char *(*tf[256])(t_modif *, va_list, int*))
 	tf['x'] = &conv_x;
 	tf['X'] = &conv_x;
 	tf['c'] = &conv_c;
-	tf['C'] = &conv_C;
+	tf['C'] = &conv_big_c;
 	tf['%'] = &conv_mod;
 }
 
@@ -46,7 +46,7 @@ char	*get_fun(t_modif *info, va_list ap, int *arg_len)
 	return (tf[(int)info->conv](info, ap, arg_len));
 }
 
-void	put_arg(t_modif *modif, char **ret_str, int	*ret_len, va_list ap)
+void	put_arg(t_modif *modif, char **ret_str, int *ret_len, va_list ap)
 {
 	char	*arg;
 	int		schamp;

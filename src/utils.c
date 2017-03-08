@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2016/12/01 15:58:04 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 15:04:00 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char		*apply_dec_prec(t_modif *modif, char **nb_str)
 	if (zero <= 0)
 		return (*nb_str);
 	if (!(tmp = (char *)malloc(sizeof(char) * (zero + 1))))
-		exit (-3);
+		exit(-3);
 	while (zero--)
 		tmp[i++] = '0';
 	tmp[i] = '\0';
@@ -86,7 +86,7 @@ char		*ap_champ(char **arg, int size, t_modif *modif,
 
 	i = 0;
 	if (!(tmp = (char *)malloc(sizeof(char) * (size + 1))))
-		exit (-3);
+		exit(-3);
 	while (size--)
 		tmp[i++] = type;
 	tmp[i] = '\0';
@@ -107,29 +107,35 @@ char		*ap_champ(char **arg, int size, t_modif *modif,
 	return (ft_strfjoin(&tmp, arg, 3));
 }
 
+
+
 int			wchar_tochar(char *dest, wchar_t ch)
 {
-    if (ch <= 0x7F) {
-        dest[0] = (char)ch;
-        return 1;
-    }
-    if (ch <= 0x7FF) {
-        dest[0] = (ch>>6) | 0xC0;
-        dest[1] = (ch & 0x3F) | 0x80;
-        return 2;
-    }
-    if (ch <= 0xFFFF) {
-        dest[0] = (ch>>12) | 0xE0;
-        dest[1] = ((ch>>6) & 0x3F) | 0x80;
-        dest[2] = (ch & 0x3F) | 0x80;
-        return 3;
-    }
-    if (ch <= 0x10FFFF) {
-        dest[0] = (ch>>18) | 0xF0;
-        dest[1] = ((ch>>12) & 0x3F) | 0x80;
-        dest[2] = ((ch>>6) & 0x3F) | 0x80;
-        dest[3] = (ch & 0x3F) | 0x80;
-        return 4;
-    }
-    return 0;
+	if (ch <= 0x7F)
+	{
+		dest[0] = (char)ch;
+		return (1);
+	}
+	if (ch <= 0x7FF && MB_CUR_MAX > 1)
+	{
+		dest[0] = (ch >> 6) | 0xC0;
+		dest[1] = (ch & 0x3F) | 0x80;
+		return (2);
+	}
+	if (ch <= 0xFFFF && MB_CUR_MAX > 2)
+	{
+		dest[0] = (ch >> 12) | 0xE0;
+		dest[1] = ((ch >> 6) & 0x3F) | 0x80;
+		dest[2] = (ch & 0x3F) | 0x80;
+		return (3);
+	}
+	if (ch <= 0x10FFFF && MB_CUR_MAX > 3)
+	{
+		dest[0] = (ch >> 18) | 0xF0;
+		dest[1] = ((ch >> 12) & 0x3F) | 0x80;
+		dest[2] = ((ch >> 6) & 0x3F) | 0x80;
+		dest[3] = (ch & 0x3F) | 0x80;
+		return (4);
+	}
+	return (0);
 }

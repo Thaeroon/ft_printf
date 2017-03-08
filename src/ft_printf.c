@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:10 by nicolas           #+#    #+#             */
-/*   Updated: 2016/11/29 19:34:09 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/08 14:22:39 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			ft_printf(const char *format, ...)
 	nb_wrote = 0;
 	va_start(ap, format);
 	if (!(modif = (t_modif *)malloc(sizeof(t_modif))))
-		exit (-1);
+		exit(-1);
 	while (*format)
 	{
 		nb_wrote += copy_until_mod(&format, &ret_str, nb_wrote);
@@ -54,8 +54,8 @@ int			ft_printf(const char *format, ...)
 		//for verification
 		/*int i = 0;
 		while (ret_str[i])
-			write(1, &ret_str[i++], 1);
-		free(ret_str);*/
+			write(1, &ret_str[i++], 1);*/
+		free(ret_str);
 	}
 	return (nb_wrote);
 }
