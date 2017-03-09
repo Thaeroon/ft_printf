@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 16:59:43 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/09 15:17:50 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ char	*conv_i(t_modif *modif, va_list arg, int *arg_len)
 
 	prefix = NULL;
 	nb = get_signed_dec(modif, arg);
-	nb_str = ft_itoa_base_spec(nb, 10, 0);
+	if (nb >= 0)
+		nb_str = ft_itoa_base_unsigned(nb, 10, 0);
+	else
+		nb_str = ft_itoa_base_unsigned(-nb, 10, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (nb >= 0)
 	{
@@ -54,7 +57,7 @@ char	*conv_o(t_modif *modif, va_list arg, int *arg_len)
 			return (ft_strdup(""));
 	}
 	nb = get_unsigned_dec(modif, arg);
-	nb_str = ft_itoa_base_spec(nb, 8, 0);
+	nb_str = ft_itoa_base_unsigned(nb, 8, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (modif->att & 0x1 && *nb_str != '0')
 	{
@@ -71,9 +74,7 @@ char	*conv_u(t_modif *modif, va_list arg, int *arg_len)
 	char		*nb_str;
 
 	nb = get_unsigned_dec(modif, arg);
-	printf("%jd\n", nb);
-	affichebin(nb);
-	nb_str = ft_itoa_base_spec(nb, 10, 0);
+	nb_str = ft_itoa_base_unsigned(nb, 10, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
 	*arg_len = ft_strlen(nb_str);
 	return (nb_str);
@@ -87,9 +88,9 @@ char	*conv_x(t_modif *modif, va_list arg, int *arg_len)
 
 	nb = get_unsigned_dec(modif, arg);
 	if (modif->conv == 'x')
-		nb_str = ft_itoa_base_spec(nb, 16, 'a');
+		nb_str = ft_itoa_base_unsigned(nb, 16, 'a');
 	else
-		nb_str = ft_itoa_base_spec(nb, 16, 'A');
+		nb_str = ft_itoa_base_unsigned(nb, 16, 'A');
 	nb_str = apply_dec_prec(modif, &nb_str);
 	if (modif->att & 0x1 && *nb_str && *nb_str != '0')
 	{

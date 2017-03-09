@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 16:59:15 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/09 15:18:19 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int				wchar_tochar(char *dest, wchar_t ch);
 char			*ap_champ(char **arg, int size, t_modif *modif, char type,
 						int *arg_len);
 char			*apply_dec_prec(t_modif *modif, char **nb_str);
-char			*ft_itoa_base_spec(intmax_t nb, int base, int mod);
+char			*ft_itoa_base_unsigned(uintmax_t nb, int base, int mod);
 intmax_t		get_signed_dec(t_modif *modif, va_list ap);
 uintmax_t		get_unsigned_dec(t_modif *modif, va_list ap);
 int				copy_arg(char **ret, int ret_len, char *arg, int arg_len);

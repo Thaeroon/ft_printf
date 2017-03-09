@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 18:05:41 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/08 16:57:19 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/03/09 14:56:01 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,14 @@ static void	ft_appendnb(char *str, uintmax_t nb, int base, int mod)
 	}
 }
 
-char		*ft_itoa_base_spec(intmax_t nb, int base, int mod)
+char		*ft_itoa_base_unsigned(uintmax_t nb, int base, int mod)
 {
 	char	*str;
 	int		len;
 
 	if (nb == 0)
 		return (ft_strdup("0"));
-	len = 0;
-	if (nb < 0 && base == 10)
-		nb = -nb;
-	len += ft_uintlen(nb, base);
+	len = ft_uintlen(nb, base);
 	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
 		exit(-3);
 	ft_appendnb(str, nb, base, mod);
