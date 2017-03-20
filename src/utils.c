@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/09 14:47:35 by nicolas          ###   ########.fr       */
+/*   Updated: 2017/03/20 19:21:27 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ char		*apply_dec_prec(t_modif *modif, char **nb_str)
 	return (ft_strfjoin(&tmp, nb_str, 3));
 }
 
-char		*ap_champ(char **arg, int size, t_modif *modif,
-						char type, int *arg_len)
+char		*ap_champ_0(char **arg, int size, t_modif *modif, int *arg_len)
 {
 	char	*tmp;
 	int		i;
@@ -88,22 +87,40 @@ char		*ap_champ(char **arg, int size, t_modif *modif,
 	if (!(tmp = (char *)malloc(sizeof(char) * (size + 1))))
 		exit(-3);
 	while (size--)
-		tmp[i++] = type;
+		tmp[i++] = '0';
+	tmp[i] = '\0';
+	*arg_len += i;
+	if (modif->conv == 'i' || modif->conv == 'x' || modif->conv == 'd'
+			|| modif->conv == 'D' || modif->conv == 'X')
+	{
+		if ((*arg)[0] == '-' || (*arg)[0] == '+')
+		{
+			tmp[0] = (*arg)[0];
+			(*arg)[0] = '0';
+		}
+		if ((*arg)[1] == 'x' || (*arg)[1] == 'X')
+		{
+			tmp[1] = (*arg)[1];
+			(*arg)[1] = '0';
+		}
+	}
+	return (ft_strfjoin(&tmp, arg, 3));
+}
+
+char		*ap_champ_sp(char **arg, int size, t_modif *modif, int *arg_len)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (!(tmp = (char *)malloc(sizeof(char) * (size + 1))))
+		exit(-3);
+	while (size--)
+		tmp[i++] = ' ';
 	tmp[i] = '\0';
 	*arg_len += i;
 	if (modif->att & 0x4)
 		return (ft_strfjoin(arg, &tmp, 3));
-	if (modif->att & 0x2 && (modif->conv == 'i' || modif->conv == 'x'
-			|| modif->conv == 'd' || modif->conv == 'D' || modif->conv == 'X'))
-	{
-		i = 0;
-		while (((*arg)[i] < '0' || (*arg)[i] > '9')
-				|| (*arg)[i + 1] == 'x' || (*arg)[i + 1] == 'X')
-		{
-			tmp[i] = (*arg)[i];
-			(*arg)[i++] = '0';
-		}
-	}
 	return (ft_strfjoin(&tmp, arg, 3));
 }
 
@@ -149,7 +166,7 @@ void		affichebin(uintmax_t n)
 	uintmax_t bit = 0;
 	uintmax_t mask = 1;
 
-	for (int i = 0; i < 64; ++i)
+	for (int i = 0; i < 128; ++i)
 	{
 		bit = (n & mask) >> i;
 		printf("%jd", bit);

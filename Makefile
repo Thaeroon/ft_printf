@@ -6,7 +6,7 @@
 #    By: nmuller <nmuller@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/07 16:48:28 by nmuller           #+#    #+#              #
-#    Updated: 2017/03/09 15:20:38 by nicolas          ###   ########.fr        #
+#    Updated: 2017/03/20 17:33:21 by nmuller          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ CPPFLAGS = -Iinclude
 
 # compiler flags
 CC = clang
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -ggdb
 
 # files
 SRC_FILES =	arg_handler.c \
