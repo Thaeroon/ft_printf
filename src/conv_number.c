@@ -79,7 +79,7 @@ char	*conv_u(t_modif *modif, va_list arg, int *arg_len)
 	*arg_len = ft_strlen(nb_str);
 	return (nb_str);
 }
-
+#include <string.h>
 char	*conv_x(t_modif *modif, va_list arg, int *arg_len)
 {
 	intmax_t	nb;
@@ -87,17 +87,18 @@ char	*conv_x(t_modif *modif, va_list arg, int *arg_len)
 	char		*prefix;
 
 	nb = get_unsigned_dec(modif, arg);
-	if (modif->conv == 'x')
-		nb_str = ft_itoa_base_unsigned(nb, 16, 'a');
-	else
+	if (modif->conv == 'X')
 		nb_str = ft_itoa_base_unsigned(nb, 16, 'A');
+	else
+		nb_str = ft_itoa_base_unsigned(nb, 16, 'a');
 	nb_str = apply_dec_prec(modif, &nb_str);
-	if (modif->att & 0x1 && *nb_str && *nb_str != '0')
+	if (modif->conv == 'p' || (modif->att & 0x1 && *nb_str
+				&& ft_strcmp(nb_str, "0") != 0))
 	{
-		if (modif->conv == 'x')
-			prefix = ft_strdup("0x");
-		else
+		if (modif->conv == 'X')
 			prefix = ft_strdup("0X");
+		else
+			prefix = ft_strdup("0x");
 		nb_str = ft_strfjoin(&prefix, &nb_str, 3);
 	}
 	*arg_len = ft_strlen(nb_str);

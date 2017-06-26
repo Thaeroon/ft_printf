@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 14:41:13 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 19:23:02 by nmuller          ###   ########.fr       */
+/*   Created: 2016/11/03 18:07:36 by nicolas           #+#    #+#             */
+/*   Updated: 2016/11/03 18:09:04 by nicolas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <locale.h>
+#include "libft.h"
 
-int		main(int argc, char **argv)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int		nb_wrote;
-	char	*str1 = "{%#.5o}";
-	char	*str2 = "%llu";
-	int i;
-	int	arg1 = 42;
-
-	nb_wrote = ft_printf(str1, arg1);
-	printf("|<- %i\n", nb_wrote);
-	printf("|<- %i", printf(str1, arg1));
-	printf("\n");
-
-
-
-	(void)argv;
-	(void)arg1;
-	(void)nb_wrote;
-	(void)argc;
-	return (0);
+	while (*s1 && *s2 && (unsigned char)*s1 == (unsigned char)*s2)
+	{
+		++s1;
+		++s2;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

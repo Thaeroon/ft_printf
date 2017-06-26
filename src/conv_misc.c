@@ -57,6 +57,7 @@ char			*conv_big_c(t_modif *modif, va_list arg, int *arg_len)
 char			*conv_p(t_modif *modif, va_list arg, int *arg_len)
 {
 	modif->att |= 1;
+	modif->modif = ll;
 	return (conv_x(modif, arg, arg_len));
 }
 

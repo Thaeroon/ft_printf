@@ -69,6 +69,7 @@ char			*conv_c(t_modif *modif, va_list arg, int *arg_len);
 char			*conv_big_c(t_modif *modif, va_list arg, int *arg_len);
 char			*conv_big_s(t_modif *modif, va_list arg, int *arg_len);
 char			*conv_mod(t_modif *modif, va_list arg, int *arg_len);
+int				ft_strcmp(const char *s1, const char *s2);
 
 void			disp_info(t_modif *modif);
 void			affichebin(uintmax_t n);

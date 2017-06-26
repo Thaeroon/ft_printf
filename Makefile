@@ -36,8 +36,9 @@ SRC_FILES =	arg_handler.c \
 			ft_strjoin.c \
 			ft_strfjoin.c \
 			ft_strlen.c \
-			ft_strcpy.c  \
-			conv_str.c
+			ft_strcpy.c \
+			conv_str.c \
+			ft_strcmp.c
 
 # executable name
 NAME = libftprintf.a

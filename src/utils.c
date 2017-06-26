@@ -91,9 +91,9 @@ char		*ap_champ_0(char **arg, int size, t_modif *modif, int *arg_len)
 	tmp[i] = '\0';
 	*arg_len += i;
 	if (modif->conv == 'i' || modif->conv == 'x' || modif->conv == 'd'
-			|| modif->conv == 'D' || modif->conv == 'X')
+			|| modif->conv == 'D' || modif->conv == 'X' || modif->conv == 'p')
 	{
-		if ((*arg)[0] == '-' || (*arg)[0] == '+')
+		if ((*arg)[0] == '-' || (*arg)[0] == '+' || (*arg)[0] == ' ')
 		{
 			tmp[0] = (*arg)[0];
 			(*arg)[0] = '0';
