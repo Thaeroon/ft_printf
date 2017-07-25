@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2017/07/25 17:03:56 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 18:20:36 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ uintmax_t		get_unsigned_dec(t_modif *modif, va_list ap);
 int				copy_arg(char **ret, int ret_len, char *arg, int arg_len);
 void			put_arg(t_modif *modif, char **ret_str,
 						int	*ret_len, va_list ap);
-const char		*get_info(const char *str, t_modif *modif);
+const char		*get_info(const char *str, t_modif *modif, va_list ap);
 int				ft_printf(const char *format, ...);
 int				copy_until_mod(const char **str, char **ret, int ret_len);
 char			*ft_strcpy(char *dest, const char *src);

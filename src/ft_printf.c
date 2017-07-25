@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:10 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 17:54:05 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 18:59:55 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_printf(const char *format, ...)
 		if (*format)
 		{
 			init_modif(&modif);
-			format = get_info(format, modif);
+			format = get_info(format, modif, ap);
 			//disp_info(modif);
 			put_arg(modif, &ret_str, &nb_wrote, ap);
 		}

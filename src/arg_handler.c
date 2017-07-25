@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2017/07/25 17:28:34 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 18:29:46 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,6 @@ void	put_arg(t_modif *modif, char **ret_str, int *ret_len, va_list ap)
 	int		arg_len;
 
 	arg_len = 0;
-	if (modif->champ == -1)
-		modif->champ = va_arg(ap, int);
-	if (modif->precision == -1)
-		modif->precision = va_arg(ap, int);
 	if ((arg = get_fun(modif, ap, &arg_len)))
 	{
 		if ((schamp = modif->champ - arg_len) > 0)
