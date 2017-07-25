@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 12:40:04 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 19:12:49 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:03:56 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,10 @@ typedef struct	s_modif
 }				t_modif;
 
 int				wchar_tochar(char *dest, wchar_t ch);
-char			*ap_champ_0(char **arg, int schamp, t_modif *modif, int *arg_len);
-char			*ap_champ_sp(char **arg, int schamp, t_modif *modif, int *arg_len);
+char			*ap_champ_0(char **arg, int schamp, t_modif *modif,
+													int *arg_len);
+char			*ap_champ_sp(char **arg, int schamp, t_modif *modif,
+													int *arg_len);
 char			*apply_dec_prec(t_modif *modif, char **nb_str);
 char			*ft_itoa_base_unsigned(uintmax_t nb, int base, int mod);
 intmax_t		get_signed_dec(t_modif *modif, va_list ap);

@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 17:29:43 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 17:34:36 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:10:20 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*conv_u(t_modif *modif, va_list arg, int *arg_len)
 	*arg_len = ft_strlen(nb_str);
 	return (nb_str);
 }
-#include <string.h>
+
 char	*conv_x(t_modif *modif, va_list arg, int *arg_len)
 {
 	intmax_t	nb;

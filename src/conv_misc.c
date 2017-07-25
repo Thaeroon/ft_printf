@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 14:51:08 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 17:06:52 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:09:03 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char			*conv_big_c(t_modif *modif, va_list arg, int *arg_len)
 
 	(void)modif;
 	nb = (wchar_t)va_arg(arg, wint_t);
-	tmp[*arg_len = wchar_tochar(tmp, nb)] = '\0';
+	*arg_len = wchar_tochar(tmp, nb);
+	tmp[*arg_len] = '\0';
 	nb_str = ft_strdup(tmp);
 	return (nb_str);
 }

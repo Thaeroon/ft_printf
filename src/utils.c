@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/23 16:06:13 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 19:21:27 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:45:13 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,14 @@ char		*ap_champ_sp(char **arg, int size, t_modif *modif, int *arg_len)
 	return (ft_strfjoin(&tmp, arg, 3));
 }
 
-
+int			nb_cur_max_3(char *dest, wchar_t ch)
+{
+	dest[0] = (ch >> 18) | 0xF0;
+	dest[1] = ((ch >> 12) & 0x3F) | 0x80;
+	dest[2] = ((ch >> 6) & 0x3F) | 0x80;
+	dest[3] = (ch & 0x3F) | 0x80;
+	return (4);
+}
 
 int			wchar_tochar(char *dest, wchar_t ch)
 {
@@ -147,13 +154,7 @@ int			wchar_tochar(char *dest, wchar_t ch)
 		return (3);
 	}
 	if (ch <= 0x10FFFF && MB_CUR_MAX > 3)
-	{
-		dest[0] = (ch >> 18) | 0xF0;
-		dest[1] = ((ch >> 12) & 0x3F) | 0x80;
-		dest[2] = ((ch >> 6) & 0x3F) | 0x80;
-		dest[3] = (ch & 0x3F) | 0x80;
-		return (4);
-	}
+		return (nb_cur_max_3(dest, ch));
 	return (0);
 }
 

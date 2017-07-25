@@ -6,7 +6,7 @@
 /*   By: nicolas <nicolas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 16:42:30 by nicolas           #+#    #+#             */
-/*   Updated: 2017/03/20 19:12:05 by nmuller          ###   ########.fr       */
+/*   Updated: 2017/07/25 17:28:34 by nmuller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ void	put_arg(t_modif *modif, char **ret_str, int *ret_len, va_list ap)
 	{
 		if ((schamp = modif->champ - arg_len) > 0)
 		{
-			if (modif->att & 0x2 && modif->precision <= 0 && !(modif->att & 0x4))
+			if (modif->att & 0x2 && modif->precision <= 0
+							&& !(modif->att & 0x4))
 				arg = ap_champ_0(&arg, schamp, modif, &arg_len);
 			else
 				arg = ap_champ_sp(&arg, schamp, modif, &arg_len);
