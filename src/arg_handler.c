@@ -57,8 +57,8 @@ void	put_arg(t_modif *modif, char **ret_str, int *ret_len, va_list ap)
 	{
 		if ((schamp = modif->champ - arg_len) > 0)
 		{
-			if (modif->att & 0x2 && modif->precision <= 0
-							&& !(modif->att & 0x4))
+			if (modif->att & 0x2 && (modif->precision <= 0 || modif->conv == 's'
+														|| modif->conv == 'S') && !(modif->att & 0x4))
 				arg = ap_champ_0(&arg, schamp, modif, &arg_len);
 			else
 				arg = ap_champ_sp(&arg, schamp, modif, &arg_len);

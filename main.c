@@ -16,15 +16,14 @@
 int		main(int argc, char **argv)
 {
 	int		nb_wrote;
-	char	*str1 = "%#.o";
+	char	*str1 = "%05.3s";
 	char	*str2 = "%llu";
-	int	arg1 = 42;
-	int arg2 = '0';
-	printf("Locale : %s\n", setlocale (LC_ALL,"fr_FR"));
-	printf("MB_CUR_MAX = %i\n", MB_CUR_MAX);
-	nb_wrote = ft_printf(str1, arg1);
+	int	arg1 = 5;
+	char *arg2 = 0;
+
+	nb_wrote = ft_printf(str1, arg2);
 	printf("|<- %i\n", nb_wrote);
-	printf("|<- %i", printf(str1, arg1));
+	printf("|<- %i", printf(str1, arg2));
 	printf("\n");
 
 
