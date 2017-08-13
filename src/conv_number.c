@@ -106,7 +106,7 @@ char	*conv_c(t_modif *modif, va_list arg, int *arg_len)
 	if (!(ret = (char*)malloc(sizeof(char) * 2)))
 		return (0);
 	ret[0] = ch;
-	ret[2] = '\0';
+	ret[1] = '\0';
 	*arg_len = 1;
 	return (ret);
 }
