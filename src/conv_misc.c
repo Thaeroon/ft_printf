@@ -21,13 +21,13 @@ char			*conv_s(t_modif *modif, va_list arg, int *arg_len)
 
 	if (modif->modif == l)
 		return (conv_big_s(modif, arg, arg_len));
-	*arg_len = 6;
+	*arg_len = (modif->precision >= 0) ? (modif->precision) : (6);
 	if (!(str = (char*)va_arg(arg, char*)))
 		return (ft_strdup("(null)"));
-	if (modif->precision == -2)
-		str_len = ft_strlen(str);
-	else
+	if (modif->precision >= 0)
 		str_len = modif->precision;
+	else
+		str_len = ft_strlen(str);
 	if (!(ret = (char*)malloc(sizeof(char) * (str_len + 1))))
 		return (0);
 	cpt = 0;

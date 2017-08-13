@@ -46,16 +46,6 @@ char	*conv_o(t_modif *modif, va_list arg, int *arg_len)
 	char		*nb_str;
 	char		*prefix;
 
-	if (modif->precision == 0)
-	{
-		if (modif->att & 0x1)
-		{
-			*arg_len = 1;
-			return (ft_strdup("0"));
-		}
-		else
-			return (ft_strdup(""));
-	}
 	nb = get_unsigned_dec(modif, arg);
 	nb_str = ft_itoa_base_unsigned(nb, 8, 0);
 	nb_str = apply_dec_prec(modif, &nb_str);
