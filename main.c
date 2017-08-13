@@ -16,14 +16,14 @@
 int		main(int argc, char **argv)
 {
 	int		nb_wrote;
-	char	*str1 = "%05.3s";
+	char	*str1 = "%05.3S";
 	char	*str2 = "%llu";
 	int	arg1 = 5;
-	char *arg2 = 0;
+	char *arg2 = "test";
 
-	nb_wrote = ft_printf(str1, arg2);
+	nb_wrote = ft_printf(str1, 0);
 	printf("|<- %i\n", nb_wrote);
-	printf("|<- %i", printf(str1, arg2));
+	printf("|<- %i", printf(str1, 0));
 	printf("\n");
 
 

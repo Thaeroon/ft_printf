@@ -22,9 +22,7 @@ static int	get_size(wchar_t *str, int precision)
 	cpt = -1;
 	if (precision != -2)
 		while (str_len + wchar_tochar(tmp, str[++cpt]) <= precision)
-		{
 			str_len += wchar_tochar(tmp, str[cpt]);
-		}
 	else
 		while (str[++cpt])
 			str_len += wchar_tochar(tmp, str[cpt]);
@@ -39,9 +37,8 @@ char		*conv_big_s(t_modif *modif, va_list arg, int *arg_len)
 	int		cpt_str;
 	int		cpt_ret;
 
-	*arg_len = 6;
-	str = (wchar_t*)va_arg(arg, wchar_t*);
-	if (!str)
+	*arg_len = (modif->precision >= 0) ? (modif->precision) : (6);
+	if (!(str  = (wchar_t*)va_arg(arg, wchar_t*)))
 		return (ft_strdup("(null)"));
 	str_len = get_size(str, modif->precision);
 	if (!(ret = (char*)malloc(sizeof(char) * (str_len + 1))))
