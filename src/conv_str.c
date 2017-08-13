@@ -21,8 +21,10 @@ static int	get_size(wchar_t *str, int precision)
 	str_len = 0;
 	cpt = -1;
 	if (precision != -2)
-		while (++cpt < precision)
+		while (str_len + wchar_tochar(tmp, str[++cpt]) <= precision)
+		{
 			str_len += wchar_tochar(tmp, str[cpt]);
+		}
 	else
 		while (str[++cpt])
 			str_len += wchar_tochar(tmp, str[cpt]);

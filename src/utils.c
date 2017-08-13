@@ -135,25 +135,25 @@ int			nb_cur_max_3(char *dest, wchar_t ch)
 
 int			wchar_tochar(char *dest, wchar_t ch)
 {
-	if (ch <= 0x7F)
+	if (ch <= 0x7F || MB_CUR_MAX == 1)
 	{
 		dest[0] = (char)ch;
 		return (1);
 	}
-	if (ch <= 0x7FF && MB_CUR_MAX > 1)
+	if (ch <= 0x7FF || MB_CUR_MAX == 2)
 	{
 		dest[0] = (ch >> 6) | 0xC0;
 		dest[1] = (ch & 0x3F) | 0x80;
 		return (2);
 	}
-	if (ch <= 0xFFFF && MB_CUR_MAX > 2)
+	if (ch <= 0xFFFF || MB_CUR_MAX == 3)
 	{
 		dest[0] = (ch >> 12) | 0xE0;
 		dest[1] = ((ch >> 6) & 0x3F) | 0x80;
 		dest[2] = (ch & 0x3F) | 0x80;
 		return (3);
 	}
-	if (ch <= 0x10FFFF && MB_CUR_MAX > 3)
+	if (ch <= 0x10FFFF || MB_CUR_MAX == 4)
 		return (nb_cur_max_3(dest, ch));
 	return (0);
 }
